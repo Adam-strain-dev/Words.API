@@ -56,7 +56,11 @@ namespace Services.Words
         {
             //FIND ALL VARIATIONS OF STRING IN DB
             List<string> anagrams = await SolveAnagrams(searchString, true);
-            //COUNT HOW MANY SUBSTRINGS ARE CONTAINED OF EACH VARIATION ON THE STRINGTOBESEARCHED
+            //COUNT HOW MANY SUBSTRINGS ARE CONTAINED OF EACH VARIATION IN THE STRINGTOBESEARCHED
+            if (anagrams.Count == 0)
+            {
+                return 0;
+            }
             var regexpBuilder = new StringBuilder();
             for(int i = 0; i < anagrams.Count; i++)
             {
@@ -67,9 +71,9 @@ namespace Services.Words
                 };
             };
             string regExpString = regexpBuilder.ToString();
-
             int countMatches1 = Regex.Matches(stringToBeSearched, regExpString).Count;
             return countMatches1;
         }
     }
 }
+    

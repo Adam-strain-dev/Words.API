@@ -30,10 +30,24 @@ namespace Services.Words.Tests
                 "asper",
                 "parse",
                 "pears",
-                "spears"
+                "spear"
             };
             
             Assert.Equal(correctResults.OrderBy(cr => cr), result.OrderBy(r => r));
+        }
+
+        [Fact]
+        public async Task GetAnagramInstancesFromString()
+        {
+            //STEP 1 ARRANGE
+            var mockRepo = new Mock<IWordChangeRepository>();
+            mockRepo.Setup(repo => repo.GetAllAsync()).ReturnsAsync(GetTestWords());
+            var service = new WordService(mockRepo.Object);
+            //STEP 2 ACT
+            var result = await service.CountAnagrams("dog", "godisadoggeddog");
+            //STEP 3 ASSERT
+            var typeResult = Assert.IsType<int>(result);
+            Assert.Equal(3, result);
         }
 
         private List<WordChange> GetTestWords()
@@ -51,33 +65,43 @@ namespace Services.Words.Tests
             });
             words.Add(new WordChange()
             {
-                WordId = 1,
+                WordId = 3,
                 Word = "asper"
             });
             words.Add(new WordChange()
             {
-                WordId = 2,
+                WordId = 4,
                 Word = "parse"
             });
             words.Add(new WordChange()
             {
-                WordId = 1,
+                WordId = 5,
                 Word = "pears"
             });
             words.Add(new WordChange()
             {
-                WordId = 2,
+                WordId = 6,
                 Word = "spear"
             });
             words.Add(new WordChange()
             {
-                WordId = 1,
+                WordId = 7,
                 Word = "test"
             });
             words.Add(new WordChange()
             {
-                WordId = 2,
+                WordId = 8,
                 Word = "sett"
+            });
+            words.Add(new WordChange()
+            {
+                WordId = 9,
+                Word = "god"
+            });
+            words.Add(new WordChange()
+            {
+                WordId = 10,
+                Word = "dog"
             });
 
             return words;

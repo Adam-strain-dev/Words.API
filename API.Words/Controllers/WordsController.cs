@@ -20,31 +20,31 @@ namespace API.Words.Controllers
 
         [HttpGet]
         [Route("getAnagrams/{wordToCheck}")]
-        public List<String> getAnagrams(String wordToCheck)
+        public async Task<List<String>> getAnagrams(String wordToCheck)
         {
             try
             {
-                return _wordService.SolveAnagrams(wordToCheck, false);
+                return await _wordService.SolveAnagrams(wordToCheck, false);
             }
             catch(Exception ex)
             {
                 //TODO: ADD REAL EXCEPTION HANDLING
-                throw ex;
+                throw;
             }
         }
 
         [HttpGet]
         [Route("getAnagramSubstringCount/{searchString}/{stringToBeSearched}")]
-        public int getAnagramSubstrings(string searchString, string stringToBeSearched)
+        public async Task<int> getAnagramSubstrings(string searchString, string stringToBeSearched)
         {
             try
             {
-                return _wordService.CountAnagrams(searchString, stringToBeSearched);
+                return await _wordService.CountAnagrams(searchString, stringToBeSearched);
             }
             catch(Exception ex)
             {
                 //TODO: ADD REAL EXCEPTION HANDLING
-                throw ex;
+                throw;
             }
         }
 

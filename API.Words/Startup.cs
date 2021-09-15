@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 
 using Data.Words.Entity;
 using Services.Words;
+using Repository.Words;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Words
@@ -33,6 +34,7 @@ namespace API.Words
             services.AddControllers();
             //TODO: Move connection string
             services.AddDbContext<WordContext>(options => options.UseSqlServer("Server=.\\LOCALSQL;Database=Test;User Id=straina; Password=Guevara1175!"));
+            services.AddScoped<IWordChangeRepository, WordChangeRepository>();
             services.AddScoped<IWordService, WordService>();
             services.AddCors(options =>
             {
