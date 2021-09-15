@@ -32,7 +32,7 @@ namespace API.Words
         {
             services.AddControllers();
             //TODO: Move connection string
-            services.AddDbContext<WordContext>(options => options.UseSqlServer("Server=localhost;Database=Alphatec;User Id=adams; Password=Guevara1175!"));
+            services.AddDbContext<WordContext>(options => options.UseSqlServer("Server=.\\LOCALSQL;Database=Test;User Id=straina; Password=Guevara1175!"));
             services.AddScoped<IWordService, WordService>();
             services.AddCors(options =>
             {

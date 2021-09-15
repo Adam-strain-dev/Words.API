@@ -8,7 +8,7 @@ namespace Services.Words
 {
     public interface IWordService
     {
-        public List<string> SolveAnagrams(string wordToSearch, bool includeOriginalWord);
-        public int CountAnagrams(string searchString, string stringToBeSearched);
+        public Task<List<string>> SolveAnagrams(string wordToSearch, bool includeOriginalWord);
+        public Task<int> CountAnagrams(string searchString, string stringToBeSearched);
     }
 }

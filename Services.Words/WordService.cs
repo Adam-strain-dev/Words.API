@@ -3,28 +3,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using Data.Words.Entity;
+using Data.Words.Models;
+using Microsoft.AspNetCore.Mvc;
+using Repository.Words;
+
 
 namespace Services.Words
 {
     public class WordService: IWordService
     {
-        private readonly WordContext _wordContext;
+        private readonly IWordChangeRepository _wordChangeRepository;
 
-        public WordService(WordContext wordContext)
+        //private readonly WordContext _wordContext;
+
+        public WordService(IWordChangeRepository wordChangeRepository)
         {
-            _wordContext = wordContext;
+            _wordChangeRepository = wordChangeRepository;
         }
 
-        public List<string> SolveAnagrams(string wordToCheck, bool includeOriginalWord)
+        public async Task<List<string>> SolveAnagrams(string wordToCheck, bool includeOriginalWord)
         {
             //THIS GIVES US THE SEARCH WORD SPLIT INTO CHARACTERS AND SORTED
             string searchString = GetSortedCharsString(wordToCheck.ToCharArray());
             
             Dictionary<String, List<String>> map = new Dictionary<string, List<string>>();
             List<string> results = new List<string>();
-            Dictionary<string, char[]> wordDict = _wordContext.WordChanges.Where(w => w.Word.Length == wordToCheck.Length).ToDictionary(w => w.Word, w => w.Word.ToCharArray());
-            
+            IEnumerable<WordChange> wordsList = await _wordChangeRepository.GetAllAsync();
+            Dictionary<string, char[]> wordDict = wordsList.Where(w => w.Word.Length == wordToCheck.Length).ToDictionary(w => w.Word, w => w.Word.ToCharArray());
             foreach (KeyValuePair<string, char[]> wEnt in wordDict)
             {
                 Array.Sort(wEnt.Value);
@@ -45,10 +52,10 @@ namespace Services.Words
             return new string(wordToSort);
         }
 
-        public int CountAnagrams(string searchString, string stringToBeSearched) 
+        public async Task<int> CountAnagrams(string searchString, string stringToBeSearched) 
         {
             //FIND ALL VARIATIONS OF STRING IN DB
-            List<string> anagrams = SolveAnagrams(searchString, true);
+            List<string> anagrams = await SolveAnagrams(searchString, true);
             //COUNT HOW MANY SUBSTRINGS ARE CONTAINED OF EACH VARIATION ON THE STRINGTOBESEARCHED
             var regexpBuilder = new StringBuilder();
             for(int i = 0; i < anagrams.Count; i++)
