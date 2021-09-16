@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-using Services.Words;
+using Words.Services;
 
 namespace API.Words.Controllers
 {
@@ -20,32 +20,16 @@ namespace API.Words.Controllers
 
         [HttpGet]
         [Route("getAnagrams/{wordToCheck}")]
-        public async Task<List<String>> getAnagrams(String wordToCheck)
+        public async Task<List<string>> getAnagrams(String wordToCheck)
         {
-            try
-            {
-                return await _wordService.SolveAnagrams(wordToCheck, false);
-            }
-            catch(Exception ex)
-            {
-                //TODO: ADD REAL EXCEPTION HANDLING
-                throw;
-            }
+            return await _wordService.SolveAnagrams(wordToCheck, false);
         }
 
         [HttpGet]
         [Route("getAnagramSubstringCount/{searchString}/{stringToBeSearched}")]
         public async Task<int> getAnagramSubstrings(string searchString, string stringToBeSearched)
         {
-            try
-            {
-                return await _wordService.CountAnagrams(searchString, stringToBeSearched);
-            }
-            catch(Exception ex)
-            {
-                //TODO: ADD REAL EXCEPTION HANDLING
-                throw;
-            }
+            return await _wordService.CountAnagrams(searchString, stringToBeSearched);
         }
 
     }

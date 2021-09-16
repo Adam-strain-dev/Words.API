@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Services.Words
+namespace Words.Services
 {
     public interface IWordService
     {

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data.Words.Entity
+namespace Words.Data.Repos
 {
-    public interface IWordContext
+    public class WordChangeRepo
     {
     }
 }

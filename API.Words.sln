@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API.Words", "API.Words\API.Words.csproj", "{60B50277-6762-4B40-8DC9-89D53442146E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Words.API", "Words.API\Words.API.csproj", "{60B50277-6762-4B40-8DC9-89D53442146E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data.Words", "Data.Words\Data.Words.csproj", "{C9BF6AAE-468C-4FDF-A5EF-A329D61E59CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Words.Data", "Words.Data\Words.Data.csproj", "{C9BF6AAE-468C-4FDF-A5EF-A329D61E59CA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services.Words", "Services.Words\Services.Words.csproj", "{8C75F1E1-30E8-40AA-A390-390E86F7D3DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Words.Services", "Words.Services\Words.Services.csproj", "{8C75F1E1-30E8-40AA-A390-390E86F7D3DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository.Words", "Repository.Words\Repository.Words.csproj", "{4AB6AD8D-9515-451C-B654-1EACE40C49A2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Words.Repository", "Words.Repository\Words.Repository.csproj", "{4AB6AD8D-9515-451C-B654-1EACE40C49A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.Words.Tests", "Services.Words.Tests\Services.Words.Tests.csproj", "{32F47180-17D4-444C-8A3A-E731A9887CF1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Words.Services.Tests", "Words.Services.Tests\Words.Services.Tests.csproj", "{32F47180-17D4-444C-8A3A-E731A9887CF1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace Data.Words.Models
+namespace Words.Data.Models
 {
-    public partial class WordChange
+    public partial class Word
     {
         public int WordId { get; set; }
-        public string Word { get; set; }
+        public string WordText { get; set; }
     }
 }

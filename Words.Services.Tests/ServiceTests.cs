@@ -1,6 +1,6 @@
-using Data.Words.Models;
+using Words.Data.Models;
 using Moq;
-using Repository.Words;
+using Words.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Xunit;
 using Xunit.Sdk;
 
-namespace Services.Words.Tests
+namespace Words.Services.Tests
 {
     public class ServiceTests
     {
@@ -16,7 +16,7 @@ namespace Services.Words.Tests
         public async Task SolveAnagramsReturnsCorrectNumberAnagrams()
         {
             //STEP 1 ARRANGE
-            var mockRepo = new Mock<IWordChangeRepository>();
+            var mockRepo = new Mock<IWordRepository>();
             mockRepo.Setup(repo => repo.GetAllAsync()).ReturnsAsync(GetTestWords());
             var service = new WordService(mockRepo.Object);
             //STEP 2 ACT
@@ -40,7 +40,7 @@ namespace Services.Words.Tests
         public async Task GetAnagramInstancesFromString()
         {
             //STEP 1 ARRANGE
-            var mockRepo = new Mock<IWordChangeRepository>();
+            var mockRepo = new Mock<IWordRepository>();
             mockRepo.Setup(repo => repo.GetAllAsync()).ReturnsAsync(GetTestWords());
             var service = new WordService(mockRepo.Object);
             //STEP 2 ACT
@@ -50,58 +50,58 @@ namespace Services.Words.Tests
             Assert.Equal(3, result);
         }
 
-        private List<WordChange> GetTestWords()
+        private List<Word> GetTestWords()
         {
-            var words = new List<WordChange>();
-            words.Add(new WordChange()
+            var words = new List<Word>();
+            words.Add(new Word()
             {
                 WordId = 1,
-                Word = "apers"
+                WordText = "apers"
             });
-            words.Add(new WordChange()
+            words.Add(new Word()
             {
                 WordId = 2,
-                Word = "apres"
+                WordText = "apres"
             });
-            words.Add(new WordChange()
+            words.Add(new Word()
             {
                 WordId = 3,
-                Word = "asper"
+                WordText = "asper"
             });
-            words.Add(new WordChange()
+            words.Add(new Word()
             {
                 WordId = 4,
-                Word = "parse"
+                WordText = "parse"
             });
-            words.Add(new WordChange()
+            words.Add(new Word()
             {
                 WordId = 5,
-                Word = "pears"
+                WordText = "pears"
             });
-            words.Add(new WordChange()
+            words.Add(new Word()
             {
                 WordId = 6,
-                Word = "spear"
+                WordText = "spear"
             });
-            words.Add(new WordChange()
+            words.Add(new Word()
             {
                 WordId = 7,
-                Word = "test"
+                WordText = "test"
             });
-            words.Add(new WordChange()
+            words.Add(new Word()
             {
                 WordId = 8,
-                Word = "sett"
+                WordText = "sett"
             });
-            words.Add(new WordChange()
+            words.Add(new Word()
             {
                 WordId = 9,
-                Word = "god"
+                WordText = "god"
             });
-            words.Add(new WordChange()
+            words.Add(new Word()
             {
                 WordId = 10,
-                Word = "dog"
+                WordText = "dog"
             });
 
             return words;
